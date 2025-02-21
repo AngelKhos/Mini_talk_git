@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/26 21:13:26 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/28 17:01:24 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	str = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!str)
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

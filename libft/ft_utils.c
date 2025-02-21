@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/12/06 17:43:19 by authomas          #+#    #+#             */
+/*   Updated: 2025/01/27 17:07:37 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+int	ft_strlen_pf(char *s)
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_strchr_pf(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str)
+	{
+		if (*str == ((char)c))
+			return (1);
+		str++;
+	}
+	return (0);
 }

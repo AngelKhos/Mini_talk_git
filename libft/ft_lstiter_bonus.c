@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/27 18:26:58 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/27 18:28:32 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

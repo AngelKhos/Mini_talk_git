@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/11 21:56:00 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/16 07:16:10 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+int	ft_isalpha(int c)
 {
-	if	(ac != 3)
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
-	//send signal
-	//do stuff about the signal
+	return (0);
 }
+
+/*int main(int argc, char **argv){
+	printf( "%c is: %i\n",argv[1][0], isalpha(argv[1][0]));
+}*/

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/27 16:19:58 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/27 16:36:51 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	while (lst != NULL)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (NULL);
 }

@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/12 17:41:33 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/16 08:35:07 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+	{
+		while (src[i])
+			i++;
+		return (i);
+	}
+	while (i < size - 1 && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (i < size)
+		dst[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

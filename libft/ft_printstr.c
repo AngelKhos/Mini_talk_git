@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/26 21:38:51 by authomas          #+#    #+#             */
+/*   Updated: 2025/01/27 17:10:35 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+int	ft_printchar(char c)
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	return (write(1, &c, 1));
+}
+
+int	ft_printstr(char *s)
+{
+	if (!s)
+		return (write(1, "(null)", 6));
+	return (write(1, s, ft_strlen_pf(s)));
 }

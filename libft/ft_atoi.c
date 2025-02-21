@@ -1,48 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 15:38:20 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 17:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/11 21:54:59 by authomas          #+#    #+#             */
+/*   Updated: 2025/02/19 21:31:33 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *s)
-{
-    int i;
-
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
-}
-
-void	ft_putstr(char *s)
-{
-	write(1, s, ft_strlen(s));
-}
-
-void ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
-
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-		return (ft_putstr("-2147483648"));
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
-}
+#include "libft.h"
 
 int	ft_atoi(char *s)
 {
@@ -68,3 +36,11 @@ int	ft_atoi(char *s)
 	}
 	return (res * sign);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	if (argc != 2)
+// 		return (0);
+// 	printf("atoi   = %d\n", atoi(argv[1]));
+// 	printf("ft_atoi= %d\n", ft_atoi(argv[1]));
+// }

@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/24 13:21:59 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/24 13:51:32 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	if	(ac != 3)
-		return (1);
-	//send signal
-	//do stuff about the signal
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (size <= 0)
+		return (ft_strlen(src));
+	while (dst[i] && i < size)
+		i++;
+	j = i;
+	while (src[i - j] && i < size - 1)
+	{
+		dst[i] = src[i - j];
+		i++;
+	}
+	if (j < size)
+		dst[i] = '\0';
+	return (j + ft_strlen(src));
 }

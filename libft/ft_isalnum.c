@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/19 21:19:24 by authomas         ###   ########lyon.fr   */
+/*   Created: 2024/11/11 21:55:41 by authomas          #+#    #+#             */
+/*   Updated: 2024/11/16 07:16:08 by authomas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char** av)
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	if	(ac != 3)
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
-	//send signal
-	//do stuff about the signal
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }
