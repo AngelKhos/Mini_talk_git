@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 07:22:04 by authomas          #+#    #+#             */
-/*   Updated: 2024/11/16 09:02:43 by authomas         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:39:23 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,3 @@ char	*ft_strchr(const char *s, int c)
 		return (str);
 	return (NULL);
 }
-
-/*int	main()
-{
-	char str[] = "je suis un test :D";
-	printf("ft_strchr = '%s'",ft_strchr(str, '\0'));
-}*/

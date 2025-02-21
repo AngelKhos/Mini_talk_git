@@ -1,26 +1,44 @@
-NAME=Push_swap
+NAME_SERV=Server
+NAME_CLIENT=Client
 CC=cc
 CC_FLAGS=-Wall -Wextra -Werror
 
-SRCS=push_swap.c\
-	operator.c
+SRC_CLIENT=client.c
+SRC_SERVER=server.c
+
+LIB= libft/libft.a
 
 DIR_OBJS=.objs
 DIR_DEPS=.deps
-OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
-DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
 
-all: $(NAME)
+OBJS_CLIENT=$(SRC_CLIENT:%.c=$(DIR_OBJS)/%.o)
+OBJS_SERVER=$(SRC_SERVER:%.c=$(DIR_OBJS)/%.o)
 
-$(NAME): $(OBJS)
-	echo "Compiling ..."
-	$(CC) $(CC_FLAGS) -o $@ $(OBJS) ./libft/libft.a
+DEPS_CLIENT=$(SRC_CLIENT:%.c=$(DIR_DEPS)/%.d)
+DEPS_SERVER=$(SRC_SERVER:%.c=$(DIR_DEPS)/%.d)
 
-	
--include $(DEPS)
+
+
+all: compile_start libft $(NAME_SERV) $(NAME_CLIENT)
+
+compile_start:
+	echo "$(COLOUR_GREEN) Compile start ... $(COLOUR_END)"
+
+libft:
+	$(MAKE) --silent -C ./libft
+
+$(NAME_SERV): $(OBJS_SERVER) $(DEPS)
+	$(CC) $(CC_FLAGS) $(OBJS_SERVER) $(LIB) -o $@
+	echo "$(COLOUR_BLUE) Server is ready $(COLOUR_END)"
+
+$(NAME_CLIENT): $(OBJS_CLIENT) $(DEPS)
+	$(CC) $(CC_FLAGS) $(OBJS_CLIENT) $(LIB) -o $@
+	echo "$(COLOUR_BLUE) Client is ready $(COLOUR_END)"
+
 $(DIR_OBJS)/%.o: %.c | $(DIR_OBJS) $(DIR_DEPS)
 	$(CC) $(CC_FLAGS) -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
-	$(MAKE) -C ./libft
+
+
 
 $(DIR_OBJS):
 	mkdir -p $(DIR_OBJS)
@@ -29,18 +47,22 @@ $(DIR_DEPS):
 	mkdir -p $(DIR_DEPS)
 
 clean:
-	echo "Removing files..."
-	$(MAKE) -C ./libft fclean
+	echo "$(COLOUR_RED)Removing files... $(COLOUR_END)"
+	$(MAKE) --silent -C  ./libft fclean
 	rm -rf $(DIR_OBJS)
 	rm -rf $(DIR_DEPS)
 
 fclean: clean
-	echo "Removing executable..."
-	$(MAKE) -C ./libft fclean
+	echo "$(COLOUR_RED)Removing executable... $(COLOUR_END)"
+	$(MAKE) --silent -C  ./libft fclean
 	rm -f $(NAME)
-	
 
 re: fclean all
 
-.PHONY: all clean fclean re
+COLOUR_GREEN=\033[0;32m
+COLOUR_RED=\033[0;31m
+COLOUR_BLUE=\033[0;34m
+COLOUR_END=\033[0m
+
+.PHONY: all clean fclean re libft
 .SILENT:
