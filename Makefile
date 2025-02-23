@@ -1,5 +1,5 @@
-NAME_SERV=Server
-NAME_CLIENT=Client
+NAME_SERV=server
+NAME_CLIENT=client
 CC=cc
 CC_FLAGS=-Wall -Wextra -Werror
 
@@ -18,11 +18,13 @@ DEPS_CLIENT=$(SRC_CLIENT:%.c=$(DIR_DEPS)/%.d)
 DEPS_SERVER=$(SRC_SERVER:%.c=$(DIR_DEPS)/%.d)
 
 
-
-all: compile_start libft $(NAME_SERV) $(NAME_CLIENT)
+all: compile_start libft $(NAME_SERV) $(NAME_CLIENT) compile_done
 
 compile_start:
 	echo "$(COLOUR_GREEN) Compile start ... $(COLOUR_END)"
+
+compile_done:
+	echo "$(COLOUR_GREEN) Compiling done $(COLOUR_END)"
 
 libft:
 	$(MAKE) --silent -C ./libft
@@ -37,7 +39,6 @@ $(NAME_CLIENT): $(OBJS_CLIENT) $(DEPS)
 
 $(DIR_OBJS)/%.o: %.c | $(DIR_OBJS) $(DIR_DEPS)
 	$(CC) $(CC_FLAGS) -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
-
 
 
 $(DIR_OBJS):
@@ -55,7 +56,8 @@ clean:
 fclean: clean
 	echo "$(COLOUR_RED)Removing executable... $(COLOUR_END)"
 	$(MAKE) --silent -C  ./libft fclean
-	rm -f $(NAME)
+	rm -rf $(NAME_SERV)
+	rm -rf $(NAME_CLIENT)
 
 re: fclean all
 
