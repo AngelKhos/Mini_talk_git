@@ -6,17 +6,17 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/21 16:34:12 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/02/22 19:24:34 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send_len(int len, int pid)
+static void	send_len(int len, int pid)
 {
 	
 }
-void	send_char(int c, int pid)
+static void	send_char(int c, int pid)
 {
 	
 }
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 {
 	int		i;
 	int		pid;
-	char	*send;
 
 	i = 0;
 	if (ac != 3)
@@ -42,8 +41,14 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
+	i = 0;
 	pid = ft_atoi(av[1]);
-	send = av[2];
+	send_len(ft_strlen(av[1]), pid);
+	while (av[1][i])
+	{
+		send_char(av[1][i], pid);
+		i++;
+	}
 
 	return (0);
 }
