@@ -53,24 +53,32 @@ SRCS=ft_atoi.c\
 	ft_utils.c\
 	get_next_line.c\
 	get_next_line_utils.c
-OBJS=$(SRCS:.c=.o)
-DEPS=$(SRCS:.c=.d)
+OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
+DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.o)
+
+DIR_OBJS=.objs
+DIR_DEPS=.deps
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(AR_ARG) $@ $(OBJS)
 	
--include $(DEPS)
-%.o: %.c
-	$(CC) $(CC_FLAGS) -c -o $@ $< -MMD
+$(DIR_OBJS)/%.o: %.c | $(DIR_OBJS) $(DIR_DEPS)
+	$(CC) $(CC_FLAGS) -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
+
+$(DIR_OBJS):
+	mkdir -p $(DIR_OBJS)
+
+$(DIR_DEPS):
+	mkdir -p $(DIR_DEPS)
 
 clean:
-	rm -f *.o
-	rm -f *.d
+	rm -rf $(DIR_OBJS)
+	rm -rf $(DIR_DEPS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
