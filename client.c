@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/26 14:52:37 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/02/27 10:03:09 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,32 @@ static void	send_len(int len, int pid)
 
 	i = 0;
 	ft_printf("len = %d\n", len);
-	while (i < 32)
+	while (i <= 32)
 	{
 		if (len % 2)
-			kill (pid, SIGUSR1);
+			kill(pid, SIGUSR1);
 		else
-			kill (pid, SIGUSR2);
+			kill(pid, SIGUSR2);
 		len = len >> 1;
-		usleep (50);
+		usleep(50);
 		i++;
 	}
 }
 
-static void	send_char(int c, int pid)
+static void	send_char(char c, int pid)
 {
 	int	i;
 
 	i = 0;
-	while (i < 8)
+	ft_printf("c = %c\n", c);
+	while (i <= 8)
 	{
 		if (c % 2)
-			kill (pid, SIGUSR1);
+			kill(pid, SIGUSR1);
 		else
-			kill (pid, SIGUSR2);
+			kill(pid, SIGUSR2);
 		c = c >> 1;
-		usleep (50);
+		usleep(50);
 		i++;
 	}
 }

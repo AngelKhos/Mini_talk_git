@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:47:19 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/27 07:33:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/02/27 10:06:43 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	make_len(int signal, int *call_count, int *step_counter)
 {
-	static int len = 0;
+	static int	len = 0;
 
 	if (signal == SIGUSR1)
 		len = len | 0x01 << *call_count;
@@ -34,8 +34,8 @@ int	make_len(int signal, int *call_count, int *step_counter)
 
 void	make_str(int signal, int *call_count, unsigned char *str)
 {
-	static unsigned char c = 0;
-	static int i = 0;
+	static unsigned char	c = 0;
+	static int				i = 0;
 
 	if (signal == SIGUSR1)
 		c = c | 0x01 << *call_count;
@@ -48,16 +48,17 @@ void	make_str(int signal, int *call_count, unsigned char *str)
 		i++;
 		*call_count = 0;
 		ft_printf("char received = %c\n", c);
+		ft_printf("%s\n", str);
 		c = 0;
 	}
 }
 
 void	ft_handle_signal(int signal)
 {
-	static int call_count = 0;
-	static int	step_counter = 0;
-	static unsigned char *str = NULL;
-	static int len = 0;
+	static int				call_count = 0;
+	static int				step_counter = 0;
+	static unsigned char	*str = NULL;
+	static int				len = 0;
 
 	if (step_counter == 0)
 		len = make_len(signal, &call_count, &step_counter);
