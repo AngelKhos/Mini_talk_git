@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:09:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/02/26 12:09:28 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 14:52:37 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@ static void	send_len(int len, int pid)
 	}
 }
 
-// static void	send_char(int c, int pid)
-// {
-// 	int	i;
+static void	send_char(int c, int pid)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < 8)
-// 	{
-// 		if (c % 2)
-// 			kill (pid, SIGUSR1);
-// 		else
-// 			kill (pid, SIGUSR2);
-// 		c = c >> 1;
-// 		usleep (50);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < 8)
+	{
+		if (c % 2)
+			kill (pid, SIGUSR1);
+		else
+			kill (pid, SIGUSR2);
+		c = c >> 1;
+		usleep (50);
+		i++;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	send_len(ft_strlen(av[2]), pid);
 	while (av[2][i])
 	{
-		// send_char(av[2][i], pid);
+		send_char(av[2][i], pid);
 		i++;
 	}
 	return (0);
